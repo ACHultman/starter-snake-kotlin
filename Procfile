@@ -1,0 +1,1 @@
+web: java -DPORT=$PORT -jar target/starter-snake-kotlin.jar
