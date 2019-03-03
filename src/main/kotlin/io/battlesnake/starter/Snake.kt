@@ -26,7 +26,7 @@ object Snake {
     fun main(args: Array<String>) {
         val port = Integer.parseInt(System.getProperty("PORT") ?: "8080")
 
-        logger.info(if (port != 8080) "Found system provided port: $port" else "Using default port: $port")
+        logger.info { if (port != 8080) "Found system provided port: $port" else "Using default port: $port" }
 
         port(port)
 
@@ -64,7 +64,7 @@ object Snake {
         fun process(req: Request, res: Response): Map<String, String>? {
             return try {
                 val uri = req.uri()
-                logger.info("$uri called with: ${req.body()}")
+                logger.info { "$uri called with: ${req.body()}" }
                 val snakeResponse: Map<String, String> =
                     when (uri) {
                         "/ping" -> ping()
@@ -74,10 +74,10 @@ object Snake {
                         else -> throw IllegalAccessError("Strange call made to the snake: $uri")
                     }
 
-                logger.info("Responding with: ${JSON_MAPPER.writeValueAsString(snakeResponse)}")
+                logger.info { "Responding with: ${JSON_MAPPER.writeValueAsString(snakeResponse)}" }
                 snakeResponse
             } catch (e: Exception) {
-                logger.warn("Something went wrong!", e)
+                logger.warn(e) { "Something went wrong!" }
                 null
             }
 

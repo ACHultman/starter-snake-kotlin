@@ -27,7 +27,7 @@ mvn compile exec:exec
 
 Snake will start up on port 8080
 
-This snake has also been run from within Intellij successfully. 
+This snake can run from within Intellij using [ngrok](https://ngrok.com). 
 
 Run the tests
 ---
