@@ -1,7 +1,7 @@
 {
   "name": "Battlesnake Kotlin Starter Snake",
   "description": "A sample starter snake for battlesnake written in kotlin",
-  "repository": "https://github.com/battlesnakeio/starter-snake-kotlin",
+  "repository": "https://github.com/athenian-programming/starter-snake-kotlin",
   "keywords": [
     "battlesnake",
     "kotlin"

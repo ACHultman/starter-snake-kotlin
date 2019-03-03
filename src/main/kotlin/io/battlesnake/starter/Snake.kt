@@ -2,7 +2,6 @@ package io.battlesnake.starter
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import mu.KLogging
 import mu.KotlinLogging
 import spark.Request
 import spark.Response
@@ -14,9 +13,9 @@ import spark.Spark.*
  * It follows the spec here: https://github.com/battlesnakeio/docs/tree/master/apis/snake
  */
 object Snake {
+    private val logger = KotlinLogging.logger {}
     private val JSON_MAPPER = ObjectMapper()
     private val HANDLER = Handler()
-    private val logger = KotlinLogging.logger {}
 
     /**
      * Main entry point.
@@ -124,7 +123,5 @@ object Snake {
         fun end(endRequest: JsonNode): Map<String, String> {
             return emptyMap()
         }
-
-        companion object : KLogging()
     }
 }

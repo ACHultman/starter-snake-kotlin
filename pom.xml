@@ -120,9 +120,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>
-                                        io.battlesnake.starter.Snake
-                                    </mainClass>
+                                    <mainClass>io.battlesnake.starter.Snake</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
