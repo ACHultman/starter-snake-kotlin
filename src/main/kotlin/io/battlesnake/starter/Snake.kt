@@ -25,9 +25,7 @@ object Snake {
     @JvmStatic
     fun main(args: Array<String>) {
         val port = Integer.parseInt(System.getProperty("PORT") ?: "8080")
-
-        logger.info { if (port != 8080) "Found system provided port: $port" else "Using default port: $port" }
-
+        logger.info { "Listening on port: $port" }
         port(port)
 
         get("/") { _, _ ->
