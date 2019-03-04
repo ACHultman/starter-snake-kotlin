@@ -92,7 +92,6 @@ class Snake {
     }
 
     companion object : KLogging() {
-
         /**
          * Main entry point.
          *
@@ -108,10 +107,7 @@ class Snake {
                 start { mapOf("color" to "#ff00ff", "headType" to "beluga", "tailType" to "bolt") }
                 move { mapOf("move" to "right") }
                 end { emptyMap() }
-                run(port)
-            }
-
+            }.run(port)
         }
-
     }
 }
