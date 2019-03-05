@@ -42,7 +42,7 @@ Executable Jar
 ---
 
 ```bash
-./gradlew uberjar
+./gradlew stage
 ```
 
 Will result in a jar file in `build/libs` called `starter-snake-kotlin.jar`
