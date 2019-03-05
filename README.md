@@ -16,13 +16,14 @@ Requirements
 ---
 
 - Install JDK 8 [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- Install Maven [https://maven.apache.org/install.html](https://maven.apache.org/install.html)
+- Install Kotlin [https://kotlinlang.org](https://kotlinlang.org)
+- Install Gradle [https://gradle.org/install/](https://gradle.org/install/)
 
 Running the snake
 ---
 
 ```bash
-mvn compile exec:exec
+./gradlew run
 ```
 
 Snake will start up on port 8080
@@ -33,7 +34,7 @@ Run the tests
 ---
 
 ```bash
-mvn compile test
+./gradlew test
 ```
 
 
@@ -41,15 +42,15 @@ Executable Jar
 ---
 
 ```bash
-mvn compile package
+./gradlew uberjar
 ```
 
-Will result in a jar file in `target` called `starter-snake-kotlin.jar`
+Will result in a jar file in `build/libs` called `starter-snake-kotlin.jar`
 
 You can then run this file with the command
 
 ```bash
-java -jar target/starter-snake-kotlin.jar
+java -jar build/libs/starter-snake-kotlin.jar
 ```
 
 
