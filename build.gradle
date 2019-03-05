@@ -18,9 +18,12 @@ def jacksonVersion = '2.8.11.1'
 def slf4jVersion = '1.7.21'
 def junitVersion = '5.2.0'
 
+def appName = 'starter-snake-kotlin'
+def mainName = 'io.battlesnake.starter.Snake'
+
 group = 'io.battlesnake'
 version = '0.0.1-SNAPSHOT'
-description = 'starter-snake-kotlin'
+description = appName
 sourceCompatibility = jvmVersion
 
 dependencies {
@@ -36,7 +39,7 @@ dependencies {
 
 // This determines the main() executed with ./gradlew run
 application {
-    mainClassName = 'io.battlesnake.starter.Snake'
+    mainClassName = mainName
 }
 
 compileKotlin {
@@ -56,10 +59,10 @@ test {
 }
 
 // Include build uberjars in heroku deploy
-task stage(dependsOn: ['uberjar', 'uberjarDsl', 'build', 'clean'])
+task stage(dependsOn: ['uberjar', 'build', 'clean'])
 build.mustRunAfter clean
 
-// These tasks create uberjars that run the apps
+// This task creates the uberjar that enables the app to run with: java -jar jarName
 task uberjar(type: Jar, dependsOn: [':compileJava', ':processResources']) {
     from(configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }) {
         exclude "META-INF/*.SF"
@@ -68,35 +71,14 @@ task uberjar(type: Jar, dependsOn: [':compileJava', ':processResources']) {
     }
 
     manifest {
-        attributes 'Implementation-Title': 'starter-snake-kotlin',
+        attributes 'Implementation-Title': appName,
                 'Implementation-Version': version,
                 'Built-Date': new Date(),
                 'Built-JDK': jdkVersion,
-                'Main-Class': 'io.battlesnake.starter.Snake'
+                'Main-Class': mainName
     }
 
-    baseName = 'starter-snake-kotlin'
-    version = ''
-
-    with jar
-}
-
-task uberjarDsl(type: Jar, dependsOn: [':compileJava', ':processResources']) {
-    from(configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }) {
-        exclude "META-INF/*.SF"
-        exclude "META-INF/*.DSA"
-        exclude "META-INF/*.RSA"
-    }
-
-    manifest {
-        attributes 'Implementation-Title': 'starter-snake-kotlin-dsl',
-                'Implementation-Version': version,
-                'Built-Date': new Date(),
-                'Built-JDK': jdkVersion,
-                'Main-Class': 'io.battlesnake.dsl.Snake'
-    }
-
-    baseName = 'starter-snake-kotlin-dsl'
+    baseName = appName
     version = ''
 
     with jar
@@ -104,23 +86,15 @@ task uberjarDsl(type: Jar, dependsOn: [':compileJava', ':processResources']) {
 
 startScripts.enabled = false
 
-// These tasks create shell scripts that run the apps
+// This task creates the shell scripts to run the app
 task starterSnake(type: CreateStartScripts) {
-    mainClassName = 'io.battlesnake.starter.Snake'
-    applicationName = 'starter-snake-kotlin'
-    outputDir = new File(project.buildDir, 'tmp')
-    classpath = startScripts.classpath
-}
-
-task starterSnakeDsl(type: CreateStartScripts) {
-    mainClassName = 'io.battlesnake.starter.Snake'
-    applicationName = 'starter-snake-kotlin-dsl'
+    mainClassName = mainName
+    applicationName = appName
     outputDir = new File(project.buildDir, 'tmp')
     classpath = startScripts.classpath
 }
 
 applicationDistribution.into('bin') {
     from(starterSnake)
-    from(starterSnakeDsl)
     fileMode = 0755
 }
