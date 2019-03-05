@@ -1,7 +1,7 @@
 starter-snake-kotlin
 ===
 
-[![Build Status](https://travis-ci.org/battlesnakeio/starter-snake-kotlin.svg?branch=master)](https://travis-ci.org/battlesnakeio/starter-snake-kotlin)
+[![Build Status](https://travis-ci.org/athenian-programming/starter-snake-kotlin.svg?branch=master)](https://travis-ci.org/athenian-programming/starter-snake-kotlin)
 
 A simple [Battlesnake AI](http://battlesnake.io) written in Kotlin.
 
