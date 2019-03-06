@@ -47,7 +47,7 @@ Executable Jar
 
 Will result in a jar file in `build/libs` called `starter-snake-kotlin.jar`
 
-You can then run this file with the command
+You can then run this file with the command:
 
 ```bash
 java -jar build/libs/starter-snake-kotlin.jar

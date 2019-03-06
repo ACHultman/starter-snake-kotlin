@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import mu.KLogging
 import spark.Request
 import spark.Response
-import spark.Spark.*
+import spark.Spark.get
+import spark.Spark.port
+import spark.Spark.post
 
 fun snake(init: Snake.() -> Unit): Snake {
     val snake = Snake()
@@ -25,19 +27,19 @@ class Snake {
     private var move: (moveRequest: JsonNode) -> Map<String, String> = { emptyMap() }
     private var end: (endRequest: JsonNode) -> Map<String, String> = { emptyMap() }
 
-    fun ping(func: () -> Map<String, String>) {
+    fun onPing(func: () -> Map<String, String>) {
         ping = func
     }
 
-    fun start(func: (startRequest: JsonNode) -> Map<String, String>) {
+    fun onStart(func: (startRequest: JsonNode) -> Map<String, String>) {
         start = func
     }
 
-    fun move(func: (moveRequest: JsonNode) -> Map<String, String>) {
+    fun onMove(func: (moveRequest: JsonNode) -> Map<String, String>) {
         move = func
     }
 
-    fun end(func: (endRequest: JsonNode) -> Map<String, String>) {
+    fun onEnd(func: (endRequest: JsonNode) -> Map<String, String>) {
         end = func
     }
 
@@ -103,10 +105,10 @@ class Snake {
             logger.info { "Listening on port: $port" }
 
             snake {
-                ping { emptyMap() }
-                start { mapOf("color" to "#ff00ff", "headType" to "beluga", "tailType" to "bolt") }
-                move { mapOf("move" to "right") }
-                end { emptyMap() }
+                onPing { emptyMap() }
+                onStart { mapOf("color" to "#ff00ff", "headType" to "beluga", "tailType" to "bolt") }
+                onMove { mapOf("move" to "right") }
+                onEnd { emptyMap() }
             }.run(port)
         }
     }
