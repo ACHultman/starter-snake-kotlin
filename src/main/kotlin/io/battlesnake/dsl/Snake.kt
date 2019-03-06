@@ -21,7 +21,6 @@ fun snake(init: Snake.() -> Unit): Snake {
  * It follows the spec here: https://github.com/battlesnakeio/docs/tree/master/apis/snake
  */
 class Snake {
-    private val JSON_MAPPER = ObjectMapper()
     private var ping: () -> Map<String, String> = { emptyMap() }
     private var start: (startRequest: JsonNode) -> Map<String, String> = { emptyMap() }
     private var move: (moveRequest: JsonNode) -> Map<String, String> = { emptyMap() }
@@ -94,6 +93,8 @@ class Snake {
     }
 
     companion object : KLogging() {
+        private val JSON_MAPPER = ObjectMapper()
+
         /**
          * Main entry point.
          *

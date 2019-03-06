@@ -3,10 +3,10 @@ starter-snake-kotlin
 
 [![Build Status](https://travis-ci.org/athenian-programming/starter-snake-kotlin.svg?branch=master)](https://travis-ci.org/athenian-programming/starter-snake-kotlin)
 
-A simple [Battlesnake AI](http://battlesnake.io) written in Kotlin.
+A simple [Battlesnake](http://battlesnake.io) written in Kotlin.
 
 Visit [https://docs.battlesnake.io](https://docs.battlesnake.io) 
-for API documentation and instructions for running your AI.
+for API documentation and instructions for creating a game.
 
 This snake is built using a lightweight http server Spark framework - [http://sparkjava.com/documentation](http://sparkjava.com/documentation)
 

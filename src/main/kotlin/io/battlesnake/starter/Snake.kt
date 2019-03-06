@@ -2,18 +2,19 @@ package io.battlesnake.starter
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import mu.KotlinLogging
+import mu.KLogging
 import spark.Request
 import spark.Response
-import spark.Spark.*
+import spark.Spark.get
+import spark.Spark.port
+import spark.Spark.post
 
 /**
  * Snake server that deals with requests from the snake engine.
  * Just boiler plate code.  See the readme to get started.
  * It follows the spec here: https://github.com/battlesnakeio/docs/tree/master/apis/snake
  */
-object Snake {
-    private val logger = KotlinLogging.logger {}
+object Snake : KLogging() {
     private val JSON_MAPPER = ObjectMapper()
     private val HANDLER = Handler()
 
@@ -30,21 +31,21 @@ object Snake {
 
         get("/") { _, _ ->
             "Battlesnake documentation can be found at " +
-                    "<a href=\"https://docs.battlesnake.io\">https://docs.battlesnake.io</a>."
+            "<a href=\"https://docs.battlesnake.io\">https://docs.battlesnake.io</a>."
         }
         post("/start",
-            { req, res -> HANDLER.process(req, res) },
-            { JSON_MAPPER.writeValueAsString(it) })
+             { req, res -> HANDLER.process(req, res) },
+             { JSON_MAPPER.writeValueAsString(it) })
         post("/ping",
-            { req, res -> HANDLER.process(req, res) },
-            { JSON_MAPPER.writeValueAsString(it) })
+             { req, res -> HANDLER.process(req, res) },
+             { JSON_MAPPER.writeValueAsString(it) })
         post("/move",
-            { req, res -> HANDLER.process(req, res) },
-            { JSON_MAPPER.writeValueAsString(it) })
+             { req, res -> HANDLER.process(req, res) },
+             { JSON_MAPPER.writeValueAsString(it) })
         post(
-            "/end",
-            { req, res -> HANDLER.process(req, res) },
-            { JSON_MAPPER.writeValueAsString(it) })
+                "/end",
+                { req, res -> HANDLER.process(req, res) },
+                { JSON_MAPPER.writeValueAsString(it) })
     }
 
     /**
@@ -64,13 +65,13 @@ object Snake {
                 val uri = req.uri()
                 logger.info { "$uri called with: ${req.body()}" }
                 val snakeResponse: Map<String, String> =
-                    when (uri) {
-                        "/ping" -> ping()
-                        "/start" -> start(JSON_MAPPER.readTree(req.body()))
-                        "/move" -> move(JSON_MAPPER.readTree(req.body()))
-                        "/end" -> end(JSON_MAPPER.readTree(req.body()))
-                        else -> throw IllegalAccessError("Strange call made to the snake: $uri")
-                    }
+                        when (uri) {
+                            "/ping"  -> ping()
+                            "/start" -> start(JSON_MAPPER.readTree(req.body()))
+                            "/move"  -> move(JSON_MAPPER.readTree(req.body()))
+                            "/end"   -> end(JSON_MAPPER.readTree(req.body()))
+                            else     -> throw IllegalAccessError("Strange call made to the snake: $uri")
+                        }
 
                 logger.info { "Responding with: ${JSON_MAPPER.writeValueAsString(snakeResponse)}" }
                 snakeResponse
@@ -85,7 +86,6 @@ object Snake {
          * /ping is called by the play application during the tournament or on play.battlesnake.io to make sure your
          * snake is still alive.
          *
-         * @param pingRequest a map containing the JSON sent to this snake. See the spec for details of what this contains.
          * @return an empty response.
          */
         fun ping(): Map<String, String> {
