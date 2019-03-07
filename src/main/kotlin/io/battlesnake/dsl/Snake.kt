@@ -50,10 +50,10 @@ class Snake {
      * @return
      */
     private fun process(req: Request, res: Response): Map<String, String> {
+        val uri = req.uri()
+        logger.info { "$uri called with: ${req.body()}" }
         return try {
-            val uri = req.uri()
-            logger.info { "$uri called with: ${req.body()}" }
-            val snakeResponse: Map<String, String> =
+            val responseMap: Map<String, String> =
                 when (uri) {
                     "/ping" -> ping.invoke()
                     "/start" -> start.invoke(JSON_MAPPER.readTree(req.body()))
@@ -62,10 +62,10 @@ class Snake {
                     else -> throw IllegalAccessError("Strange call made to the snake: $uri")
                 }
 
-            logger.info { "Responding with: ${JSON_MAPPER.writeValueAsString(snakeResponse)}" }
-            snakeResponse
+            logger.info { "Responding with: ${JSON_MAPPER.writeValueAsString(responseMap)}" }
+            responseMap
         } catch (e: Exception) {
-            logger.warn(e) { "Something went wrong!" }
+            logger.warn(e) { "Something went wrong with $uri" }
             emptyMap()
         }
     }
