@@ -15,9 +15,9 @@ This snake is built using a lightweight http server Spark framework - [http://sp
 Requirements
 ---
 
-- Install JDK 8 [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- Install Kotlin [https://kotlinlang.org](https://kotlinlang.org)
-- Install Gradle [https://gradle.org/install/](https://gradle.org/install/)
+- Install [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- Install [Kotlin](https://kotlinlang.org)
+- Install [Gradle](https://gradle.org/install/)
 
 Running the snake
 ---
@@ -26,9 +26,9 @@ Running the snake
 ./gradlew run
 ```
 
-Snake will start up on port 8080
+The snake will start up on port 8080.
 
-This snake can run from within Intellij using [ngrok](https://ngrok.com). 
+Use [ngrok](https://ngrok.com) to run the snake locally.
 
 Run the tests
 ---
@@ -36,7 +36,6 @@ Run the tests
 ```bash
 ./gradlew test
 ```
-
 
 Executable Jar
 ---
