@@ -17,10 +17,10 @@ def sparkVersion = '2.8.0'
 def jacksonVersion = '2.9.8'
 def slf4jVersion = '1.7.21'
 def junitVersion = '5.4.0'
+def appName = 'starter-snake-kotlin'
 
 // Update this value to change the snake you want to run
 def mainName = 'io.battlesnake.starter.Snake'
-def appName = 'starter-snake-kotlin'
 
 group = 'io.battlesnake'
 version = '0.0.1-SNAPSHOT'

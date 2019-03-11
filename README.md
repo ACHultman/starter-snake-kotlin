@@ -22,6 +22,8 @@ Requirements
 Running the snake
 ---
 
+Assign the `mainName` variable in [build.gradle](build.gradle) to the proper Snake classname.
+
 ```bash
 ./gradlew run
 ```
