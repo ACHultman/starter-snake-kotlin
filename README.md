@@ -58,23 +58,23 @@ java -jar build/libs/starter-snake-kotlin.jar
 Deploying to Heroku
 ---
 
-1) Create a new Heroku app:
+1) Create a new Heroku app with:
 ```
 heroku create [APP_NAME]
 ```
 
-2) Deploy code to Heroku servers:
+2) Deploy code to Heroku with:
 ```
 git push heroku master
 ```
 
-3) Open Heroku app in browser:
+3) Open Heroku app in browser with:
 ```
 heroku open
 ```
 or visit [http://APP_NAME.herokuapp.com](http://APP_NAME.herokuapp.com).
 
-4) View server logs with the `heroku logs` command:
+4) View server logs with the `heroku logs` command with:
 ```
 heroku logs --tail
 ```
