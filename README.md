@@ -30,7 +30,7 @@ Assign the `mainName` variable in [build.gradle](build.gradle) to the proper Sna
 
 The snake will start up on port 8080.
 
-Use [ngrok](https://ngrok.com) to run the snake locally.
+Use [ngrok](https://ngrok.com) to make a locally running snake visible to the BattleSnake server.
 
 Run the tests
 ---
