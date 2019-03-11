@@ -24,13 +24,13 @@ Running the snake
 
 Assign the `mainName` variable in [build.gradle](build.gradle) to the proper Snake classname.
 
+Use [ngrok](https://ngrok.com) to make a locally running snake visible to the BattleSnake server.
+
 ```bash
 ./gradlew run
 ```
 
 The snake will start up on port 8080.
-
-Use [ngrok](https://ngrok.com) to make a locally running snake visible to the BattleSnake server.
 
 Run the tests
 ---
@@ -39,16 +39,16 @@ Run the tests
 ./gradlew test
 ```
 
-Executable Jar
+Executable UberJar
 ---
+
+Build the uberjar `build/libs/starter-snake-kotlin.jar` with:
 
 ```bash
 ./gradlew stage
 ```
 
-Will result in a jar file in `build/libs` called `starter-snake-kotlin.jar`
-
-You can then run this file with the command:
+Run the uberjar with:
 
 ```bash
 java -jar build/libs/starter-snake-kotlin.jar
